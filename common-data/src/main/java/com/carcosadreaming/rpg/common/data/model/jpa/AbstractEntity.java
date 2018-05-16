@@ -24,10 +24,8 @@ import java.util.UUID;
 public class AbstractEntity implements CommonEntity
 {
   @Id
-  @GeneratedValue(generator = "uuid2")
-  @GenericGenerator(name = "uuid2", strategy = "uuid2")
   @Column(name="id", nullable = false, updatable = false, columnDefinition = "BINARY(16)")
-  private UUID id;
+  private UUID id = UUID.randomUUID();
 
   @CreatedDate
   @Column(name="creation_date", nullable = false, updatable = false)

@@ -32,5 +32,17 @@ public class CommonDataApplication implements CommandLineRunner
 
   @Override
   public void run ( String... args) throws Exception {
+    ClassifierJpaImpl newClsfr = new ClassifierJpaImpl();
+    newClsfr.setName( "Ability" );
+    newClsfr.setShortName( "Ability" );
+    newClsfr.setDescription( "Ability scores for an entity" );
+    ClassifierJpaImpl saved = null;
+    if (null != classifierRepo) {
+      saved = classifierRepo.save( newClsfr );
+      log.info( "saved:  {}", saved.toString() );
+      for (ClassifierJpaImpl found : classifierRepo.findAll()) {
+        log.info( "found:  {}, {}, {}", found.getId().getMostSignificantBits(), found.getId().getLeastSignificantBits(), found.toString() );
+      }
+    }
   }
 }
