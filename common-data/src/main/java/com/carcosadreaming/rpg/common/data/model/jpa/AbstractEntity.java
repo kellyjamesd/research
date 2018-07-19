@@ -3,6 +3,7 @@ package com.carcosadreaming.rpg.common.data.model.jpa;
 import com.carcosadreaming.rpg.common.data.model.CommonEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -18,12 +19,16 @@ import java.util.UUID;
 
 @Data
 @MappedSuperclass
+@NoArgsConstructor
 @EqualsAndHashCode( exclude = { "creationDate", "modifiedDate", "createdBy", "modifiedBy" } )
 public class AbstractEntity implements CommonEntity
 {
   @Id
   @Column(name="id", nullable = false, updatable = false, columnDefinition = "BINARY(16)")
   private UUID id = UUID.randomUUID();
+
+  @Column(name="system", nullable = false, updatable = false)
+  private String system;
 
   @CreatedDate
   @Column(name="creation_date", nullable = false, updatable = false)
@@ -40,6 +45,11 @@ public class AbstractEntity implements CommonEntity
   @LastModifiedBy
   @Column(name="modified_by")
   private String modifiedBy;
+
+  public AbstractEntity( String system )
+  {
+    this.system = system;
+  }
 
   @PrePersist
   void prePersist()
