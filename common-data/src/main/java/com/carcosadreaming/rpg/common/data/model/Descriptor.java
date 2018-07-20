@@ -1,5 +1,10 @@
 package com.carcosadreaming.rpg.common.data.model;
 
-public interface Descriptor extends Morpheme
+import com.carcosadreaming.rpg.common.data.model.jpa.ClassifierElementJpaImpl;
+
+public interface Descriptor extends CommonEntity
 {
+  ClassifierElementJpaImpl getClassifierElement();
+
+  void setClassifierElement( ClassifierElementJpaImpl classifierElement );
 }

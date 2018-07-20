@@ -10,5 +10,5 @@ import java.util.UUID;
 @RepositoryRestResource(collectionResourceRel = "descriptors", path = "descriptors")
 public interface DescriptorRepository extends JpaRepository<DescriptorJpaImpl, UUID>
 {
-  List<DescriptorJpaImpl> findByClassifierId(UUID classifierId);
+  List<DescriptorJpaImpl> findByClassifierElementId(UUID descriptorId);
 }

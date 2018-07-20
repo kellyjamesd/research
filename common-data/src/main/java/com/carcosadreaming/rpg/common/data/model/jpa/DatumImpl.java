@@ -28,12 +28,12 @@ public class DatumImpl extends AbstractEntity implements CommonEntity
 
   @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "descriptorId")
-  private DescriptorJpaImpl descriptor;
+  private ClassifierElementJpaImpl descriptor;
 
   @Column(name = "datumValue")
   private String datumValue;
 
-  public DatumImpl( Identifiable<UUID> entity, DescriptorJpaImpl descriptor, String datumValue )
+  public DatumImpl( Identifiable<UUID> entity, ClassifierElementJpaImpl descriptor, String datumValue )
   {
     this.entityId = entity.getId();
     this.descriptor = descriptor;
