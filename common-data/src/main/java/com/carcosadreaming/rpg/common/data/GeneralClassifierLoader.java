@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired ))
 @Slf4j
-public class DataLoader implements CommandLineRunner
+public class GeneralClassifierLoader implements CommandLineRunner
 {
     private final ClassifierRepository classifierRepo;
     private final ClassifierElementRepository classifierElementRepository;
@@ -175,6 +175,11 @@ public class DataLoader implements CommandLineRunner
                                                         Arrays.asList("Home Region (map)", "Region", "Where born/raised/created.  What map"),
                                                         Arrays.asList("Homeland (city, village, forest, hex, etc.)", "Homeland", "Specific locational detail. Hex or name."),
                                                         Arrays.asList("Languages", "Language", "How does the entity communicate.")
+                                                )
+                                        ),
+                                        Arrays.asList(
+                                                "Character Generation", "Generation", "Aspects of how the entity was generated.", Arrays.asList(
+                                                        Arrays.asList( "Abilities", "Abilities", "How are the ability scores generated" )
                                                 )
                                         )
                                 )

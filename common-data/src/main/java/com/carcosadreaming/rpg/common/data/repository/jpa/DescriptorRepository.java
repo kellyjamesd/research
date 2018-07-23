@@ -7,7 +7,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.util.List;
 import java.util.UUID;
 
-@RepositoryRestResource(collectionResourceRel = "descriptors", path = "descriptors")
+@RepositoryRestResource(collectionResourceRel = "descriptor", path = "descriptors")
 public interface DescriptorRepository extends JpaRepository<DescriptorJpaImpl, UUID>
 {
   List<DescriptorJpaImpl> findByClassifierElementId(UUID descriptorId);
