@@ -1,4 +1,4 @@
-package com.carcosadreaming.rpg.monstermark;
+package com.carcosadreaming.monstermark;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
