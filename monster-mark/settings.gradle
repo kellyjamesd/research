@@ -1,2 +1,3 @@
 rootProject.name = 'monster-mark'
 
+includeBuild '../common-data'
