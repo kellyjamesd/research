@@ -10,5 +10,5 @@ import java.util.UUID;
 @RepositoryRestResource(collectionResourceRel = "classifierElements", path = "classifierElements")
 public interface ClassifierElementRepository extends JpaRepository<ClassifierElementJpaImpl, UUID>
 {
-  List<ClassifierElementJpaImpl> findByClassifierId(UUID classifierId);
+  List<ClassifierElementJpaImpl> findByClassifierIdOrderByOrder(UUID classifierId);
 }

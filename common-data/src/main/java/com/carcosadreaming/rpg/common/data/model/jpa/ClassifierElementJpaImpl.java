@@ -9,10 +9,7 @@ import lombok.ToString;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
@@ -23,15 +20,19 @@ import javax.persistence.Table;
 public class ClassifierElementJpaImpl extends AbstractMorpheme implements ClassifierElement
 {
 
+  @Column(name = "loadOrder")
+  private Integer order;
+
   @ManyToOne//(fetch = FetchType.LAZY)
   @JoinColumn(name = "classifierId", nullable = false)
   @OnDelete( action = OnDeleteAction.CASCADE )
   @JsonIgnore
   private ClassifierJpaImpl classifier;
 
-  public ClassifierElementJpaImpl( String name, String shortName, String description, ClassifierJpaImpl classifier )
+  public ClassifierElementJpaImpl( String name, String shortName, String description, Integer order, ClassifierJpaImpl classifier )
   {
     super( classifier.getSystem(), name, shortName, description );
+    this.order = order;
     this.classifier = classifier;
     setClassifier( classifier );
   }
