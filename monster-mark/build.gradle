@@ -3,7 +3,6 @@ buildscript {
         springBootVersion = '2.0.2.RELEASE'
     }
     repositories {
-        mavenLocal()
         mavenCentral()
     }
     dependencies {
@@ -20,16 +19,16 @@ group = 'com.carcosadreaming.rpg'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
-
 repositories {
-    mavenLocal()
     mavenCentral()
 }
 
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
-    compile ('org.springframework.boot:spring-boot-starter-hateoas')
+    compile('org.springframework.boot:spring-boot-starter-data-rest')
+    compile('org.springframework.boot:spring-boot-starter-hateoas')
+    compile('org.springframework.boot:spring-boot-starter-web')
     compile('com.carcosadreaming.rpg:common-data:0.0.1-SNAPSHOT')
     runtime('com.h2database:h2')
     compileOnly('org.projectlombok:lombok')
