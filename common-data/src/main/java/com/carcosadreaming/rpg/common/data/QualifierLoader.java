@@ -100,5 +100,32 @@ public class QualifierLoader implements CommandLineRunner
         log.debug("Factor Descriptor:  {}:{}:{}", classifierEngine.getClassifier(identifier).getName(), classifierEngine.getClassifierElement(identifier).getName(), factorDescriptor.getName());
         log.debug("Identifier:  {}, {}", identifier, factor);
 
+        builder(ruleSystem,"Entity", "Character Generation", "Abilities")
+            .and()
+        ;
+
     }
+
+    private QualifierBuilder builder()
+    {
+        QualifierBuilder builder = new QualifierBuilder();
+        builder.setClassifierEngine( this.classifierEngine );
+        builder.setQualifierRepo( this.qualifierRepo );
+        builder.setFactorRepo( this.factorRepo );
+        return builder;
+    }
+
+    private QualifierBuilder builder(ClassifierIdentifier identifier)
+    {
+        QualifierBuilder builder = builder();
+        builder.setIdentifier( identifier );
+        return builder;
+    }
+
+    private QualifierBuilder builder(String ruleSet, String classifierName, String elementName, String descriptorName)
+    {
+        return builder( new ClassifierIdentifier( ruleSet, classifierName, elementName, descriptorName ) );
+    }
+
+
 }
