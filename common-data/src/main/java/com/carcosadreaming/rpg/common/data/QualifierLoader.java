@@ -1,9 +1,7 @@
 package com.carcosadreaming.rpg.common.data;
 
-import com.carcosadreaming.rpg.common.data.model.Classifier;
 import com.carcosadreaming.rpg.common.data.model.ClassifierIdentifier;
 import com.carcosadreaming.rpg.common.data.model.Descriptor;
-import com.carcosadreaming.rpg.common.data.model.Qualifier;
 import com.carcosadreaming.rpg.common.data.model.jpa.FactorJpaImpl;
 import com.carcosadreaming.rpg.common.data.model.jpa.QualifierJpaImpl;
 import com.carcosadreaming.rpg.common.data.repository.jpa.ClassifierElementRepository;
@@ -76,32 +74,51 @@ public class QualifierLoader implements CommandLineRunner
         // PF1 Sample Data
         String ruleSystem = "PF1";
 
-        ClassifierIdentifier identifier;
-        //identifier = new ClassifierIdentifier( ruleSystem,"Ability", "Strength", "Permanent Ability Score");
-        identifier = new ClassifierIdentifier( ruleSystem,"Entity", "Character Generation", "Abilities");
-
-        Descriptor qualifierDescriptor = classifierEngine.getDescriptor(identifier);
-        log.debug("Qualifier Descriptor:  {}:{}:{}", classifierEngine.getClassifier(identifier).getName(), classifierEngine.getClassifierElement(identifier).getName(), qualifierDescriptor.getName());
-
-        QualifierJpaImpl qualifier = new QualifierJpaImpl( "Point Buy Abilities", "Point Buy", "Abilities are selected via the point buy system.", qualifierDescriptor );
-        qualifier = qualifierRepo.save( qualifier );
-
-        identifier =  new ClassifierIdentifier( ruleSystem, "Ability", "Strength", "Permanent Ability Score" );
-        Descriptor factorDescriptor = classifierEngine.getDescriptor( identifier );
-        FactorJpaImpl factor = new FactorJpaImpl( "Strength Score", "STR", "Point Buy for Strength.", qualifier, factorDescriptor );
-        factor = factorRepo.save( factor );
-        log.debug("Factor Descriptor:  {}:{}:{}", classifierEngine.getClassifier(identifier).getName(), classifierEngine.getClassifierElement(identifier).getName(), factorDescriptor.getName());
-        log.debug("Identifier:  {}, {}", identifier, factor);
-
-        identifier.setClassifierElementName( "Dexterity" );
-        factorDescriptor = classifierEngine.getDescriptor( identifier );
-        factor = new FactorJpaImpl( "Dexterity Score", "DEX", "Point Buy for Dexterity.", qualifier, factorDescriptor );
-        factor = factorRepo.save( factor );
-        log.debug("Factor Descriptor:  {}:{}:{}", classifierEngine.getClassifier(identifier).getName(), classifierEngine.getClassifierElement(identifier).getName(), factorDescriptor.getName());
-        log.debug("Identifier:  {}, {}", identifier, factor);
+//        ClassifierIdentifier identifier;
+//        //currentIdentifier = new ClassifierIdentifier( ruleSystem,"Ability", "Strength", "Permanent Ability Score");
+//        identifier = new ClassifierIdentifier( ruleSystem,"Entity", "Character Generation", "Abilities");
+//
+//        Descriptor qualifierDescriptor = classifierEngine.getDescriptor(identifier);
+//        log.debug("Qualifier Descriptor:  {}:{}:{}", classifierEngine.getClassifier(identifier).getName(), classifierEngine.getClassifierElement(identifier).getName(), qualifierDescriptor.getName());
+//
+//        QualifierJpaImpl qualifier = new QualifierJpaImpl( "Point Buy Abilities", "Point Buy", "Abilities are selected via the point buy system.", qualifierDescriptor );
+//        qualifier = qualifierRepo.save( qualifier );
+//
+//        identifier =  new ClassifierIdentifier( ruleSystem, "Ability", "Strength", "Permanent Ability Score" );
+//        Descriptor factorDescriptor = classifierEngine.getDescriptor( identifier );
+//        FactorJpaImpl factor = new FactorJpaImpl( "Strength Score", "STR", "Point Buy for Strength.", qualifier, factorDescriptor );
+//        factor = factorRepo.save( factor );
+//        log.debug("Factor Descriptor:  {}:{}:{}", classifierEngine.getClassifier(identifier).getName(), classifierEngine.getClassifierElement(identifier).getName(), factorDescriptor.getName());
+//        log.debug("Identifier:  {}, {}", identifier, factor);
+//
+//        identifier.setClassifierElementName( "Dexterity" );
+//        factorDescriptor = classifierEngine.getDescriptor( identifier );
+//        factor = new FactorJpaImpl( "Dexterity Score", "DEX", "Point Buy for Dexterity.", qualifier, factorDescriptor );
+//        factor = factorRepo.save( factor );
+//        log.debug("Factor Descriptor:  {}:{}:{}", classifierEngine.getClassifier(identifier).getName(), classifierEngine.getClassifierElement(identifier).getName(), factorDescriptor.getName());
+//        log.debug("Identifier:  {}, {}", identifier, factor);
 
         builder(ruleSystem,"Entity", "Character Generation", "Abilities")
-            .and()
+            .addQualifier( "Point Buy Abilities", "Point Buy", "Abilities are selected via the point buy system." )
+            .toDescriptor( "Ability", "Strength", "Permanent Ability Score" )
+            .addFactor("Strength Score", "STR", "Point Buy for Strength.")
+
+            .toDescriptor( "Ability", "Dexterity", "Permanent Ability Score" )
+            .addFactor("Dexterity Score", "DEX", "Point Buy for Dexterity.")
+
+            .toDescriptor( "Ability", "Constitution", "Permanent Ability Score" )
+            .addFactor("Constitution Score", "CON", "Point Buy for Constitution.")
+
+            .toDescriptor( "Ability", "Intelligence", "Permanent Ability Score" )
+            .addFactor("Intelligence Score", "INT", "Point Buy for Intelligence.")
+
+            .toDescriptor( "Ability", "Wisdom", "Permanent Ability Score" )
+            .addFactor("Wisdom Score", "WIS", "Point Buy for Wisdom.")
+
+            .toDescriptor( "Ability", "Charisma", "Permanent Ability Score" )
+            .addFactor("Charisma Score", "CHA", "Point Buy for Charisma.")
+
+
         ;
 
     }
@@ -118,7 +135,7 @@ public class QualifierLoader implements CommandLineRunner
     private QualifierBuilder builder(ClassifierIdentifier identifier)
     {
         QualifierBuilder builder = builder();
-        builder.setIdentifier( identifier );
+        builder.setCurrentIdentifier( identifier );
         return builder;
     }
 

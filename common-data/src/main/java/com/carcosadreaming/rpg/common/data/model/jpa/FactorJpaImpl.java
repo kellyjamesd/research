@@ -22,7 +22,8 @@ import java.util.UUID;
 @ToString( callSuper = true )
 @Entity
 @Table(name="factor" )
-public class FactorJpaImpl  extends AbstractMorpheme {
+public class FactorJpaImpl  extends AbstractMorpheme implements com.carcosadreaming.rpg.common.data.model.Factor
+{
 
     @Column(name = "qualifierId")
     private UUID qualifierId;
