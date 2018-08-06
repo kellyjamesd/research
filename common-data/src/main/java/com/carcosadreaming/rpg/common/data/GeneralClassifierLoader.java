@@ -208,7 +208,9 @@ public class GeneralClassifierLoader implements CommandLineRunner
                                         Arrays.asList("Charisma", "CHA", "Charisma measures a character's personality, personal magnetism, ability to lead, and appearance.", abilityDescriptors)
                                 )
                         ),
-                        Arrays.asList("Race", "Race", "Race mixes biology and culture then translates those concepts into racial traits.", "Races", false, null),
+                        Arrays.asList("Ancestry", "Ancestry", "An ancestry is the broad family of people that a character or creature belongs to.", "Ancestries", false, null),
+                        Arrays.asList("Background", "Background", "Backgrounds allow you to customize your character based on her life before adventuring.", "Backgrounds", false, null),
+                        Arrays.asList("Character Class", "Class", "Character class indicates the training that has been developed and will be improved upon by an adventurer.", false, null),
                         Arrays.asList("Skill", "Skill", "Skills represent some of the most basic and yet most fundamental abilities an entity possesses.", "Skills", true, null),
                         Arrays.asList("Feat", "Feat", "Feats represent abilities outside the scope of an entity's race or class", "Feats", true, null),
                         Arrays.asList("Equipment", "Equipment", "Things owned/carried.", "Equipment", false, null),
